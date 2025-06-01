@@ -27,6 +27,7 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     dt = 0
+    score = 0
 
     while True:
         for event in pygame.event.get():
@@ -40,11 +41,25 @@ def main():
         for asteroid in asteroids:
             if asteroid.collision_check(player):
                 print ("Game over!")
+                if score < 5:
+                    print ("what the fuck, dude")
+                    sys.exit()
+                print (f"Final Score: {score}")
+                if score > 50:
+                    print ("you fuckin did it, bro")
+                if score > 100:
+                    print ("calm down")
+                if score > 1000:
+                    print ("take a shower")
+                    print ("go outside")
+                    print ("meet a girl")
+                    print ("find Jesus, if you want")
                 sys.exit()
             for shot in shots:
                 if shot.collision_check(asteroid):
                     shot.kill()
                     asteroid.split()
+                    score += 1
 
         for obj in drawable:
             obj.draw(screen)
